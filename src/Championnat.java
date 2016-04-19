@@ -1,9 +1,23 @@
-/**
- * Created by maxime on 04/04/2016.
- */
+import java.util.Vector;
+
 public class Championnat {
-	Poule grp1;
-	Poule grp2;
+	Poule p1;
+	Poule p2;
+	float score;
+	
+	public Championnat(){
+		score=-1;
+	}
+	
+	public Championnat (Vector<Ville> lesVilles) {
+	
+	}
+	
+	public Championnat (Poule P1, Poule P2) {
+		this.p1=P1;
+		this.p2=P2;
+		this.score=-1;
+	}
 
     public boolean mutation(){
         return true;
