@@ -1,9 +1,13 @@
 import java.util.Vector;
 
-public class Championnat {
+public class Championnat implements Comparable<Championnat> {
 	Poule p1;
 	Poule p2;
 	float score;
+
+	public static Championnat GenRandChamp(Ville[] villes){
+		return null;
+	}
 	
 	public Championnat(){
 		score=-1;
@@ -19,10 +23,15 @@ public class Championnat {
 		this.score=-1;
 	}
 
-    public boolean mutation(){
-        return true;
+    public Championnat mutation(){
+        return null;
     }
-     public boolean croisement(){
-         return true;
+     public Championnat croisement(Championnat c){
+         return null;
      }
+
+	@Override
+	public int compareTo(Championnat o) {
+		return 0;
+	}
 }

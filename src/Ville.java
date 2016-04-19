@@ -25,10 +25,10 @@ public class Ville {
     private int classement;
     private String name;
 
-    public Ville(String name, int classement, int index) {
+    public Ville(String name, int classement) {
         this.name = name;
         this.classement = classement;
-        this.index = index;
+        this.index = classement - 1 ;
     }
 
     public int getClassement() {
