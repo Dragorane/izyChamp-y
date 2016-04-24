@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Vector;
 
 public class Championnat implements Comparable<Championnat> {
@@ -6,7 +7,16 @@ public class Championnat implements Comparable<Championnat> {
 	float score;
 
 	public static Championnat GenRandChamp(Ville[] villes){
-		return null;
+
+		Poule p1 = new Poule(), p2 = new Poule();
+		for (Ville v: villes ) {
+			Random r = new Random();
+			if(p1.lesVilles.size() < villes.length/2 && r.nextBoolean())
+				p1.lesVilles.add(v);
+			else
+				p2.lesVilles.add(v);
+		}
+		return new Championnat(p1,p2);
 	}
 	
 	public Championnat(){
@@ -23,11 +33,22 @@ public class Championnat implements Comparable<Championnat> {
 		this.score=-1;
 	}
 
-    public Championnat mutation(){
+	@Override
+	public String toString() {
+		return "Championnat{" +
+				"p2=" + p2 +
+				", p1=" + p1 +
+				", score=" + score +
+				'}';
+	}
+
+	public Championnat mutation(){
         return null;
     }
      public Championnat croisement(Championnat c){
-         return null;
+         
+
+		 return null;
      }
 
 	@Override

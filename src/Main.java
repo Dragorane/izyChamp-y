@@ -6,24 +6,24 @@ public class Main {
         int n = 50; //nombre d'individu dans une generation
         int m = 5; //nombre d'individu qui vont avoir le droit a une mutation
 
-        Ville[] villes = {new Ville("Toulouse", 1),
-                new Ville("Cergy", 2),
-                new Ville("Meudon", 3),
-                new Ville("Amneville", 4),
-                new Ville("Francais_volants", 5),
-                new Ville("Asnieres", 6),
-                new Ville("Valance", 7),
-                new Ville("Avignon", 8),
-                new Ville("Marseille", 9),
-                new Ville("Chambery", 10),
-                new Ville("Annecy", 11),
-                new Ville("Limoges", 12),
-                new Ville("Clermon", 13),
-                new Ville("Villard", 14),
-                new Ville("Roanne", 15),
-                new Ville("Evry", 16),
-                new Ville("Strasbourg", 17),
-                new Ville("Wasquehal", 18)
+        Ville[] villes = {new Ville("Toulouse", 1, 1),
+                new Ville("Cergy", 2, 3),
+                new Ville("Meudon", 3, 4),
+                new Ville("Amneville", 4, 7),
+                new Ville("Francais_volants", 5, 8),
+                new Ville("Asnieres", 6, 11),
+                new Ville("Valance", 7, 12),
+                new Ville("Avignon", 8, 16),
+                new Ville("Marseille", 9, 18),
+                new Ville("Chambery", 10, 2),
+                new Ville("Annecy", 11, 5),
+                new Ville("Limoges", 12, 6),
+                new Ville("Clermon", 13, 9),
+                new Ville("Villard", 14, 10),
+                new Ville("Roanne", 15, 13),
+                new Ville("Evry", 16, 14),
+                new Ville("Strasbourg", 17, 15),
+                new Ville("Wasquehal", 18, 17)
         };
 
         List<Championnat> listChamp = new ArrayList<>();
@@ -31,6 +31,8 @@ public class Main {
             listChamp.add(Championnat.GenRandChamp(villes));
         }
         // list de championnat initial
+        System.out.println(listChamp);
+
 
         List<Championnat> listEnfants = new ArrayList<>();
 
@@ -62,7 +64,7 @@ public class Main {
             listEnfants.clear();
         } while (false); //false pour le moment =)
 
-        
+
         return;
     }
 }

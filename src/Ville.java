@@ -25,10 +25,17 @@ public class Ville {
     private int classement;
     private String name;
 
-    public Ville(String name, int classement) {
+    public Ville(String name, int index ,int classement) {
         this.name = name;
         this.classement = classement;
-        this.index = classement - 1 ;
+        this.index = index -1;
+    }
+
+    @Override
+    public String toString() {
+        return "Ville{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
     public int getClassement() {
