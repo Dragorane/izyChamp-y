@@ -1,8 +1,5 @@
 import java.util.Vector;
 
-/**
- * Created by maxime on 06/05/2016.
- */
 public class SousGroupe {
     Vector<Ville> lesVilles;
 

@@ -1,6 +1,3 @@
-/**
- * Created by maxime on 06/05/2016.
- */
 public abstract class AbsGroupe {
 
     public abstract void add(Ville v);

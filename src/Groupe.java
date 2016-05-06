@@ -1,8 +1,5 @@
 import java.util.Random;
 
-/**
- * Created by maxime on 06/05/2016.
- */
 public class Groupe extends AbsGroupe {
     SousGroupe sgrp1, sgrp2;
 
