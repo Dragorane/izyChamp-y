@@ -1,10 +1,15 @@
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 import static java.lang.System.*;
 
 public class Main {
 
-    public static void casSimple(int n,int m, float scoreMin, int nbGenMax){
+    public static void casSimple(int n, int m, float scoreMin, int nbGenMax) {
         // n nombre d'individu dans une generation
         // m nombre d'individu qui vont avoir le droit a une mutation
 
@@ -80,7 +85,7 @@ public class Main {
     }
 
 
-    public static void casPasSimple(int n,int m, float scoreMin, int nbGenMax){
+    public static void casPasSimple(int n, int m, float scoreMin, int nbGenMax) {
 
 
         Ville[] villes = {new Ville("Toulouse", 1, 1),
@@ -145,35 +150,55 @@ public class Main {
         out.println("Nombre de Generation : " + generation);
         out.println("Derniere Generation : ");
         out.println(listChamp);
+        writeInFile(generation,listChamp);
+    }
+
+
+    public static void writeInFile(int generation, List<Championnat> listChamp) {
+        File fichierTexte = new File("result.txt");
+        FileWriter ecrireFichier;
+
+        try {
+            ecrireFichier = new FileWriter(fichierTexte);
+            ecrireFichier.write("Nombre de Generation : " + generation);
+            ecrireFichier.write("\nDerniere Generation : \n");
+            ecrireFichier.write(listChamp.toString());
+            ecrireFichier.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 
     public static void main(String[] args) {
-    	int nb_indiv, taux_mutation, nb_gen_max;
-    	float score_min;
-    	java.util.Scanner saisie = new java.util.Scanner(System.in);
-    	System.out.println("Souhaitez vous saisir les paramètres de l'algorithme vous même ? (y/n)");
-    	String question = saisie.next();
-    	if (question.equals("n")){
-    		nb_indiv = 50;
-    		taux_mutation=5;
-    		score_min=(float)0.05;
-    		nb_gen_max=25;
-    	}else{
-    		System.out.println("Entrez le nombre d'individus dans une generation");
-        	nb_indiv = saisie.nextInt();
-        	saisie.nextLine();
-        	System.out.println("Entrez le taux de mutation souhaité");
-        	taux_mutation = saisie.nextInt();
-        	System.out.println("Entrez le score minimal souhaité (float, ex : 5,5)");
-        	score_min = saisie.nextFloat();
-        	System.out.println("Entrez le nombre de génération maximal souhaité");
-        	nb_gen_max = saisie.nextInt();
-    	}
-    	System.out.println("Lancement du cas simple ...");
-    	casSimple(nb_indiv,taux_mutation,score_min, nb_gen_max);
-    	saisie.nextLine();
-    	System.out.println("Lancement du cas pas simple ...");
-        casPasSimple(nb_indiv,taux_mutation,score_min, nb_gen_max);
-    	saisie.close();
+        int nb_indiv, taux_mutation, nb_gen_max;
+        float score_min;
+        java.util.Scanner saisie = new java.util.Scanner(System.in);
+        System.out.println("Souhaitez vous saisir les paramètres de l'algorithme vous même ? (y/n)");
+        String question = saisie.next();
+        if (question.equals("n")) {
+            nb_indiv = 50;
+            taux_mutation = 5;
+            score_min = (float) 0.05;
+            nb_gen_max = 25;
+        } else {
+            System.out.println("Entrez le nombre d'individus dans une generation");
+            nb_indiv = saisie.nextInt();
+            saisie.nextLine();
+            System.out.println("Entrez le taux de mutation souhaité");
+            taux_mutation = saisie.nextInt();
+            System.out.println("Entrez le score minimal souhaité (float, ex : 5,5)");
+            score_min = saisie.nextFloat();
+            System.out.println("Entrez le nombre de génération maximal souhaité");
+            nb_gen_max = saisie.nextInt();
+        }
+        System.out.println("Lancement du cas simple ...");
+        casSimple(nb_indiv, taux_mutation, score_min, nb_gen_max);
+        saisie.nextLine();
+        System.out.println("Lancement du cas pas simple ...");
+        casPasSimple(nb_indiv, taux_mutation, score_min, nb_gen_max);
+        saisie.close();
     }
 }
