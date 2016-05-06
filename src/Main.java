@@ -41,6 +41,8 @@ public class Main {
         do { // boucle sur les generations
             generation++;
 
+            System.out.println(generation);
+
             try {
                 // gen n enfants
                 for (int i = 0; i < n; i++) {
@@ -73,7 +75,7 @@ public class Main {
                 listChamp = new ArrayList<Championnat>(listInit);
 
             }
-        } while (listChamp.get(0).score > 0.05 || generation > 10);
+        } while (listChamp.get(0).score > 0.05 && generation < 10);
         System.out.println("Nombre de Generation : " + generation);
         System.out.println(listChamp);
     }
