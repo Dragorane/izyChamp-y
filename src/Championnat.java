@@ -4,50 +4,53 @@ import java.util.Random;
 import java.util.Vector;
 
 public class Championnat implements Comparable<Championnat> {
-	Poule p1;
-	Poule p2;
+
+	AbsGroupe g1;
+	AbsGroupe g2;
+
 	float score;
 
-	public static Championnat GenRandChamp(Ville[] villes){
+	public Championnat(AbsGroupe p1, AbsGroupe p2) {
+		this.g1=p1;
+		this.g2=p2;
+		this.score=calculScore(p1, p2);
+	}
 
-		Poule p1 = new Poule(), p2 = new Poule();
+	public static Championnat GenRandChampWithPoule(Ville[] villes){
+
+		AbsGroupe p1 = new Poule(), p2 = new Poule();
 		for (Ville v: villes ) {
 			Random r = new Random();
-			if(p1.lesVilles.size() < villes.length/2 && r.nextBoolean() || p2.lesVilles.size() >= villes.length/2)
-				p1.lesVilles.add(v);
+			if(p1.size() < villes.length/2 && r.nextBoolean() || p2.size() >= villes.length/2)
+				p1.add(v);
 			else
-				p2.lesVilles.add(v);
+				p2.add(v);
 		}
 		return new Championnat(p1,p2);
 	}
 
-	public float calculScore(){
-		return this.score = calculScore(p1, p2);
+	public static Championnat GenRandChampWithGroupe(Ville[] villes){
+
+		AbsGroupe p1 = new Groupe(), p2 = new Groupe();
+		for (Ville v: villes ) {
+			Random r = new Random();
+			if(p1.size() < 6 && r.nextBoolean() || p2.size() >= 6)
+				p1.add(v);
+			else
+				p2.add(v);
+		}
+		return new Championnat(p1,p2);
 	}
 
-	public float calculScore(Poule p1, Poule p2) {
-		return Math.abs(p1.getScore() - p2.getScore());
-	}
-
-	public Championnat(){
-		score=-1;
-	}
-	
-	public Championnat (Vector<Ville> lesVilles) {
-	
-	}
-	
-	public Championnat (Poule P1, Poule P2) {
-		this.p1=P1;
-		this.p2=P2;
-		this.score=calculScore();
+	private float calculScore(AbsGroupe g1, AbsGroupe g2) {
+			return this.score = Math.abs(g1.getScore() - g2.getScore());
 	}
 
 	@Override
 	public String toString() {
 		return "Championnat {\n" +
-				"\tPoule 1 : [" + p1.lesVilles + "],\n" +
-				"\tPoule 2 : [" + p2.lesVilles + "],\n" +
+				"\tGroupe 1 : [" + g1 + "],\n" +
+				"\tGroupe 2 : [" + g2 + "],\n" +
 				"\tScore=" + score +
 				"\n}\n";
 	}
@@ -55,49 +58,68 @@ public class Championnat implements Comparable<Championnat> {
 	public boolean mutation(){
 		// we can add an try catch
 		Random r = new Random();
-		int p = r.nextInt(this.p1.lesVilles.size());
-		int q = r.nextInt(this.p2.lesVilles.size());
-		Ville v1 = this.p1.lesVilles.get(p);
-		Ville v2 = this.p2.lesVilles.get(q);
+		int p = r.nextInt(this.g1.size());
+		int q = r.nextInt(this.g2.size());
+		Ville v1 = this.g1.get(p);
+		Ville v2 = this.g2.get(q);
 
-		this.p1.lesVilles.remove(v1);
-		this.p2.lesVilles.remove(v2);
+		this.g1.remove(v1);
+		this.g2.remove(v2);
 
-		this.p1.lesVilles.add(v2);
-		this.p2.lesVilles.add(v1);
+		this.g1.add(v2);
+		this.g2.add(v1);
 
 		return true;
     }
-     public Championnat croisement(Championnat c){
+     public Championnat croisementPoule(Championnat c, Ville[] toutesLesVilles){
 
-		 Vector<Ville> toutesLesVilles = new Vector<Ville>();
-		 toutesLesVilles.addAll(p1.lesVilles);
-		 toutesLesVilles.addAll(p2.lesVilles);
-
-		 // now we have toutesLesVilles initiate !!! Fuck it !! Need refactoring or not
-
-		 Poule newP1 = new Poule(), newP2 = new Poule();
+		 AbsGroupe newP1 = new Poule(), newP2 = new Poule();
 		 Vector<Ville> reste = new Vector<Ville>();
 
 
 		 for (Ville v : toutesLesVilles) {
-			 if(this.p1.lesVilles.contains(v) && c.p1.lesVilles.contains(v))
-				 newP1.lesVilles.add(v);
-			 else if(this.p2.lesVilles.contains(v) && c.p2.lesVilles.contains(v))
-				 newP2.lesVilles.add(v);
+			 if(this.g1.contains(v) && c.g1.contains(v))
+				 newP1.add(v);
+			 else if(this.g2.contains(v) && c.g2.contains(v))
+				 newP2.add(v);
 			 else
 				 reste.add(v);
 		 }
 
 		 for (Ville v: reste ) {
 			 Random r = new Random();
-			 if(newP1.lesVilles.size() < toutesLesVilles.size()/2 && r.nextBoolean() || newP2.lesVilles.size() >= toutesLesVilles.size()/2)
-				 newP1.lesVilles.add(v);
+			 if(newP1.size() < toutesLesVilles.length/2 && r.nextBoolean() || newP2.size() >= toutesLesVilles.length/2)
+				 newP1.add(v);
 			 else
-				 newP2.lesVilles.add(v);
+				 newP2.add(v);
 		 }
 		 return new Championnat(newP1,newP2);
      }
+
+	public Championnat croisementGroupe(Championnat c, Ville[] toutesLesVilles){
+
+		AbsGroupe newP1 = new Groupe(), newP2 = new Groupe();
+		Vector<Ville> reste = new Vector<Ville>();
+
+
+		for (Ville v : toutesLesVilles) {
+			if(this.g1.contains(v) && c.g1.contains(v))
+				newP1.add(v);
+			else if(this.g2.contains(v) && c.g2.contains(v))
+				newP2.add(v);
+			else
+				reste.add(v);
+		}
+
+		for (Ville v: reste ) {
+			Random r = new Random();
+			if(newP1.size() < toutesLesVilles.length/2 && r.nextBoolean() || newP2.size() >= toutesLesVilles.length/2)
+				newP1.add(v);
+			else
+				newP2.add(v);
+		}
+		return new Championnat(newP1,newP2);
+	}
 
 	@Override
 	public int compareTo(Championnat o) {

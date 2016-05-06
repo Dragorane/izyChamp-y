@@ -1,4 +1,4 @@
-public class Ville {
+class Ville {
     static double[][] matriceDist =
             {
                     {0.0, 717.0, 667.0, 1015.0, 673.0, 686.0, 449.0, 344.0, 417.0, 604.0, 665.0, 291.0, 408.0, 517.0, 504.0, 668.0, 973.0, 901.0},
@@ -25,10 +25,10 @@ public class Ville {
     private int classement;
     private String name;
 
-    public Ville(String name, int index ,int classement) {
+    public Ville(String name, int index, int classement) {
         this.name = name;
         this.classement = classement;
-        this.index = index -1;
+        this.index = index - 1;
     }
 
     @Override
