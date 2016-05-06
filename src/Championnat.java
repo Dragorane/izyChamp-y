@@ -20,7 +20,15 @@ public class Championnat implements Comparable<Championnat> {
 		}
 		return new Championnat(p1,p2);
 	}
-	
+
+	public float calculScore(){
+		return this.score = calculScore(p1, p2);
+	}
+
+	public float calculScore(Poule p1, Poule p2) {
+		return Math.abs(p1.getScore() - p2.getScore());
+	}
+
 	public Championnat(){
 		score=-1;
 	}
@@ -32,7 +40,7 @@ public class Championnat implements Comparable<Championnat> {
 	public Championnat (Poule P1, Poule P2) {
 		this.p1=P1;
 		this.p2=P2;
-		this.score=-1;
+		this.score=calculScore();
 	}
 
 	@Override
@@ -93,6 +101,9 @@ public class Championnat implements Comparable<Championnat> {
 
 	@Override
 	public int compareTo(Championnat o) {
-		return 0;
+		if(this.score > o.score)
+			return 1;
+		else
+			return -1;
 	}
 }

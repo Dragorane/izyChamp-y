@@ -48,7 +48,7 @@ public class Main {
                 listEnfants.add(listChamp.get(p).croisement(listChamp.get(s)));
             }
 
-            
+
             // # X-men
             for (int i = 0; i < m ; i++) {
                 Random r = new Random();
@@ -63,7 +63,9 @@ public class Main {
                 listChamp.remove(listChamp.size() -1);
             }
             listEnfants.clear();
-        } while (false); //false pour le moment =)
+        } while (listChamp.get(0).score > 0.05 || generation < 10); //false pour le moment =)
+
+        System.out.println(listChamp);
 
 
         return;
