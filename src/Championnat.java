@@ -101,9 +101,11 @@ public class Championnat implements Comparable<Championnat> {
 
 	@Override
 	public int compareTo(Championnat o) {
+
 		if(this.score > o.score)
 			return 1;
 		else
 			return -1;
+
 	}
 }

@@ -33,6 +33,7 @@ public class Main {
         // list de championnat initial
         //System.out.println(listChamp);
 
+        List<Championnat> listInit = new ArrayList<Championnat>(listChamp);
 
         List<Championnat> listEnfants = new ArrayList<>();
 
@@ -40,34 +41,40 @@ public class Main {
         do { // boucle sur les generations
             generation++;
 
-            // gen n enfants
-            for (int i = 0; i < n; i++) {
-                Random r = new Random();
-                int p = r.nextInt(listChamp.size());
-                int s = r.nextInt(listChamp.size());
-                listEnfants.add(listChamp.get(p).croisement(listChamp.get(s)));
+            try {
+                // gen n enfants
+                for (int i = 0; i < n; i++) {
+                    Random r = new Random();
+                    int p = r.nextInt(listChamp.size());
+                    int s = r.nextInt(listChamp.size());
+                    listEnfants.add(listChamp.get(p).croisement(listChamp.get(s)));
+                }
+
+
+                // # X-men
+                for (int i = 0; i < m ; i++) {
+                    Random r = new Random();
+                    int p = r.nextInt(listEnfants.size());
+                    listEnfants.get(p).mutation();
+                }
+                listChamp.addAll(listEnfants);
+
+
+                Collections.sort(listChamp);
+
+
+                for (int i = 0; i < n; i++) {
+                    listChamp.remove(listChamp.size() -1);
+                }
+                listEnfants.clear();
             }
+            catch (Exception e){
+                System.err.println(e);
+                listChamp = new ArrayList<Championnat>(listInit);
 
-
-            // # X-men
-            for (int i = 0; i < m ; i++) {
-                Random r = new Random();
-                int p = r.nextInt(listEnfants.size());
-                listEnfants.get(p).mutation();
             }
-
-
-            listChamp.addAll(listEnfants);
-            Collections.sort(listChamp);
-            for (int i = 0; i < n; i++) {
-                listChamp.remove(listChamp.size() -1);
-            }
-            listEnfants.clear();
-        } while (listChamp.get(0).score > 0.05 || generation < 10); //false pour le moment =)
-
+        } while (listChamp.get(0).score > 0.05 || generation > 10);
+        System.out.println("Nombre de Generation : " + generation);
         System.out.println(listChamp);
-
-
-        return;
     }
 }
