@@ -148,7 +148,32 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        //casSimple(50,5,(float) 0.05, 25);
-        casPasSimple(50,5,(float) 0.002, 25);
+    	int nb_indiv, taux_mutation, nb_gen_max;
+    	float score_min;
+    	java.util.Scanner saisie = new java.util.Scanner(System.in);
+    	System.out.println("Souhaitez vous saisir les paramètres de l'algorithme vous même ? (y/n)");
+    	String question = saisie.next();
+    	if (question.equals("n")){
+    		nb_indiv = 50;
+    		taux_mutation=5;
+    		score_min=(float)0.05;
+    		nb_gen_max=25;
+    	}else{
+    		System.out.println("Entrez le nombre d'individus dans une generation");
+        	nb_indiv = saisie.nextInt();
+        	saisie.nextLine();
+        	System.out.println("Entrez le taux de mutation souhaité");
+        	taux_mutation = saisie.nextInt();
+        	System.out.println("Entrez le score minimal souhaité (float, ex : 5,5)");
+        	score_min = saisie.nextFloat();
+        	System.out.println("Entrez le nombre de génération maximal souhaité");
+        	nb_gen_max = saisie.nextInt();
+    	}
+    	System.out.println("Lancement du cas simple ...");
+    	casSimple(nb_indiv,taux_mutation,score_min, nb_gen_max);
+    	saisie.nextLine();
+    	System.out.println("Lancement du cas pas simple ...");
+        casPasSimple(nb_indiv,taux_mutation,score_min, nb_gen_max);
+    	saisie.close();
     }
 }
