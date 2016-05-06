@@ -1,3 +1,5 @@
+import com.sun.scenario.effect.Merge;
+
 import java.util.Random;
 import java.util.Vector;
 
@@ -48,7 +50,33 @@ public class Championnat implements Comparable<Championnat> {
      public Championnat croisement(Championnat c){
 
 
-		 return null;
+		 Vector<Ville> toutesLesVilles = new Vector<Ville>();
+		 toutesLesVilles.addAll(p1.lesVilles);
+		 toutesLesVilles.addAll(p2.lesVilles);
+
+		 // now we have toutesLesVilles initiate !!! Fuck it !! Need refactoring or not
+
+		 Poule newP1 = new Poule(), newP2 = new Poule();
+		 Vector<Ville> reste = new Vector<Ville>();
+
+
+		 for (Ville v : toutesLesVilles) {
+			 if(this.p1.lesVilles.contains(v) && c.p1.lesVilles.contains(v))
+				 newP1.lesVilles.add(v);
+			 else if(this.p2.lesVilles.contains(v) && c.p2.lesVilles.contains(v))
+				 newP2.lesVilles.add(v);
+			 else
+				 reste.add(v);
+		 }
+
+		 for (Ville v: reste ) {
+			 Random r = new Random();
+			 if(newP1.lesVilles.size() < toutesLesVilles.size()/2 && r.nextBoolean() || newP2.lesVilles.size() >= toutesLesVilles.size()/2)
+				 newP1.lesVilles.add(v);
+			 else
+				 newP2.lesVilles.add(v);
+		 }
+		 return new Championnat(newP1,newP2);
      }
 
 	@Override

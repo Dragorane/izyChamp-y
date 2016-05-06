@@ -31,7 +31,7 @@ public class Main {
             listChamp.add(Championnat.GenRandChamp(villes));
         }
         // list de championnat initial
-        System.out.println(listChamp);
+        //System.out.println(listChamp);
 
 
         List<Championnat> listEnfants = new ArrayList<>();
@@ -47,6 +47,8 @@ public class Main {
                 int s = r.nextInt(listChamp.size());
                 listEnfants.add(listChamp.get(p).croisement(listChamp.get(s)));
             }
+
+            System.out.println(listEnfants);
 
             // # X-men
             for (int i = 0; i < m ; i++) {
