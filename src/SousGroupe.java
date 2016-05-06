@@ -25,8 +25,8 @@ public class SousGroupe {
 
     public float getSommeDist() {
         float dist = 0;
-        for(int i = 0; i < lesVilles.size(); i++){
-            for (int j = i+1; j <lesVilles.size(); j++){
+        for (int i = 0; i < lesVilles.size(); i++) {
+            for (int j = i + 1; j < lesVilles.size(); j++) {
                 dist += lesVilles.get(i).getDist(lesVilles.get(j));
             }
         }
@@ -34,9 +34,9 @@ public class SousGroupe {
         return dist;
     }
 
-    public int getSommeClassement(){
+    public int getSommeClassement() {
         int clas = 0;
-        for(int i = 0; i < lesVilles.size(); i++){
+        for (int i = 0; i < lesVilles.size(); i++) {
             clas += lesVilles.get(i).getClassement();
         }
         return clas;

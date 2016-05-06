@@ -15,7 +15,7 @@ public class Groupe extends AbsGroupe {
 
     public void add(Ville v) {
         Random r = new Random();
-        if(sgrp1.size() < tailleSGrp && r.nextBoolean() || sgrp2.size() >= tailleSGrp)
+        if (sgrp1.size() < tailleSGrp && r.nextBoolean() || sgrp2.size() >= tailleSGrp)
             sgrp1.add(v);
         else
             sgrp2.add(v);
@@ -27,14 +27,14 @@ public class Groupe extends AbsGroupe {
 
     @Override
     public float getScore() {
-        return (float)(getSommeDist()/1015) + (float)getSommeClassement()/12;
+        return (float) (getSommeDist() / 1015) + (float) getSommeClassement() / 12;
     }
 
     public float getSommeDist() {
-        float dist = 2*(sgrp1.getSommeDist() + sgrp2.getSommeDist());
+        float dist = 2 * (sgrp1.getSommeDist() + sgrp2.getSommeDist());
 
-        for(int i = 0; i < sgrp1.size(); i++){
-            for (int j = 0; j <sgrp2.size(); j++){
+        for (int i = 0; i < sgrp1.size(); i++) {
+            for (int j = 0; j < sgrp2.size(); j++) {
                 dist += sgrp1.get(i).getDist(sgrp2.get(j));
             }
         }
@@ -54,15 +54,15 @@ public class Groupe extends AbsGroupe {
 
     @Override
     public Ville get(int p) {
-        if(p<3)
+        if (p < 3)
             return sgrp1.get(p);
         else
-            return sgrp2.get(p-3);
+            return sgrp2.get(p - 3);
     }
 
     @Override
     public boolean remove(Ville v) {
-        if(sgrp1.contains(v))
+        if (sgrp1.contains(v))
             return sgrp1.remove(v);
         else if (sgrp2.contains(v))
             return sgrp2.remove(v);

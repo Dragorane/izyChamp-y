@@ -82,6 +82,8 @@ public class Main {
         out.println("Nombre de Generation : " + generation);
         out.println("Derniere Generation : ");
         out.println(listChamp);
+        writeInFile(generation, listChamp);
+
     }
 
 
@@ -150,7 +152,7 @@ public class Main {
         out.println("Nombre de Generation : " + generation);
         out.println("Derniere Generation : ");
         out.println(listChamp);
-        writeInFile(generation,listChamp);
+        writeInFile(generation, listChamp);
     }
 
 
