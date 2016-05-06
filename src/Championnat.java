@@ -44,11 +44,23 @@ public class Championnat implements Comparable<Championnat> {
 				"\n}\n";
 	}
 
-	public Championnat mutation(){
-        return null;
+	public boolean mutation(){
+		// we can add an try catch
+		Random r = new Random();
+		int p = r.nextInt(this.p1.lesVilles.size());
+		int q = r.nextInt(this.p2.lesVilles.size());
+		Ville v1 = this.p1.lesVilles.get(p);
+		Ville v2 = this.p2.lesVilles.get(q);
+
+		this.p1.lesVilles.remove(v1);
+		this.p2.lesVilles.remove(v2);
+
+		this.p1.lesVilles.add(v2);
+		this.p2.lesVilles.add(v1);
+
+		return true;
     }
      public Championnat croisement(Championnat c){
-
 
 		 Vector<Ville> toutesLesVilles = new Vector<Ville>();
 		 toutesLesVilles.addAll(p1.lesVilles);
